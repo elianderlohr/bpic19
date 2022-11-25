@@ -1,6 +1,12 @@
 # Business Process Intelligence Challenge 19 - Rule Checker
 This Python package can be used to specify and check control-flow based business rules for event logs.
 
+> This https://github.com/bptlab/bpic19 is adapted by elianderlohr for a student project at University of Mannheim (IS-515)
+
+## IS-515 University Project
+
+The important file is the following: 3-way_matching_invoice_custom
+
 ## Existing Scripts
 The directory `scripts/` contains ready-to-run scripts, to check predefined rules for different item-types, as described in the report.
 
