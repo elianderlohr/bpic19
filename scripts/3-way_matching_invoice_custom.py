@@ -17,6 +17,7 @@ working_dir = Path("data")
 os.chdir(working_dir)
 print("changed directory to: %s" % os.getcwd())
 
+# Unpack the xes.gz file using zip manager
 log_file = Path("BPI_Challenge_2019-3-w-after.xes")
 log_file_short = str(log_file).split(".xes")[0]
 
