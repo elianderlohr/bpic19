@@ -34,7 +34,8 @@ def import_xes_log(file, prefix=""):
         # events
         for event in t.iter("".join([prefix, "event"])):
             single_event = {"name": "", "timestamp": None}
-            for a in event:
+
+            for a in event: 
                 if a.attrib["key"] == "concept:name":
                     single_event["name"] = a.attrib["value"]
                     events.append(a.attrib["value"])
@@ -43,9 +44,6 @@ def import_xes_log(file, prefix=""):
                     single_event["timestamp"] = datetime.strptime(
                         a.attrib["value"], "%Y-%m-%dT%H:%M:%S.%f%z"
                     )
-
-                if single_event["name"] != "" and single_event["timestamp"] != None:
-                    events_withts.append(single_event)
 
                 # case attributes
                 if (
@@ -72,6 +70,8 @@ def import_xes_log(file, prefix=""):
                     and item_type is None
                 ):
                     item_type = a.attrib["value"]
+            
+            events_withts.append(single_event)
 
         if vendor is None:
             vendor = "N/A"

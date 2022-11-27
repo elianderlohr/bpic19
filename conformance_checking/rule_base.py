@@ -271,11 +271,13 @@ class Rule_Checker:
             "violations": (violations, self.get_percentage(traces, violations)),
         }
 
-    def make_throughout_analysis(self, log, first: str, second: str) -> dict:
+    def make_throughout_analysis(self, log, first: str, second: str, file = "") -> dict:
         violations = 0
         traces = 0
 
         throughput = []
+
+        output = []
 
         for trace in log:
             events = trace["events_with_ts"]
@@ -311,12 +313,23 @@ class Rule_Checker:
                     )
 
                     throughput.append(delta.days)
+                    output.append(",".join([trace["trace_id"], str(delta.days), str(second_counter), str(traces)]))
 
             if not failed and hadCI:
                 if first_counter != second_counter:
                     violations += 1
 
             traces += 1
+
+        if len(file) > 0:
+            file = "_".join(
+                [
+                    file,
+                    "throughput", first, second
+                ]
+            )
+            print("File-Name: ", file)
+            self.export_case_ids(file, output)
 
         return {
             "first": first,
